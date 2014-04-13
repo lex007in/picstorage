@@ -1,6 +1,6 @@
 package picstorage.services;
 
-import picstorage.domain.Comment;
+import picstorage.domain.BytePicture;
 import picstorage.domain.Picture;
 
 import java.util.List;
@@ -11,9 +11,7 @@ import java.util.List;
  */
 public interface PictureService {
 
-    Picture addPicture(Picture picture);
-
-    Picture addComment(long id, Comment comment);
+    Picture addPicture(Picture picture, BytePicture bytePicture);
 
     Picture setTitle(long id, String title);
 
@@ -24,4 +22,6 @@ public interface PictureService {
     List<Picture> getAllPictures();
 
     List<Picture> getUserPictures(String login);
+
+    BytePicture getBytePicture(long id);
 }

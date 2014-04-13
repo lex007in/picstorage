@@ -1,18 +1,28 @@
 package picstorage.domain;
 
-import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import java.util.Date;
 
 /**
  * User: ivannik
  * Date: 10.04.2014
  */
+@Entity
 public class Comment {
+
+    @Id
     private long id;
+    @OneToOne
     private UserInfo creator;
-    private LocalDateTime creationTime;
+    private Date creationTime;
     private String text;
 
-    public Comment(UserInfo creator, LocalDateTime creationTime, String text) {
+    public Comment() {
+    }
+
+    public Comment(UserInfo creator, Date creationTime, String text) {
         this.creator = creator;
         this.creationTime = creationTime;
         this.text = text;
@@ -26,7 +36,7 @@ public class Comment {
         return creator;
     }
 
-    public LocalDateTime getCreationTime() {
+    public Date getCreationTime() {
         return creationTime;
     }
 

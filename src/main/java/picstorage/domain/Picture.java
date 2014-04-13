@@ -1,28 +1,39 @@
 package picstorage.domain;
 
-import java.time.LocalDateTime;
+import javax.persistence.Entity;
+
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * User: ivannik
  * Date: 10.04.2014
  */
+@Entity
 public class Picture {
 
+    @Id
     private long id;
     private String title;
     private String description;
-    private BytePicture picture;
-    private byte[] thumbnail;
+    private long pictureId;
+    @OneToOne
     private UserInfo creator;
-    private LocalDateTime creationTime;
+    private Date creationTime;
+    @OneToMany
     private List<Comment> comments;
 
-    public Picture(BytePicture picture,
+    public Picture() {
+    }
+
+    public Picture(long pictureId,
                    UserInfo creator,
-                   LocalDateTime creationTime) {
-        this.picture = picture;
+                   Date creationTime) {
+        this.pictureId = pictureId;
         this.creator = creator;
         this.creationTime = creationTime;
         this.comments = new ArrayList<Comment>();
@@ -40,19 +51,19 @@ public class Picture {
         return description;
     }
 
-    public BytePicture getPicture() {
-        return picture;
+    public long getPictureId() {
+        return pictureId;
     }
 
-    public byte[] getThumbnail() {
-        return thumbnail;
+    public void setPictureId(long pictureId) {
+        this.pictureId = pictureId;
     }
 
     public UserInfo getCreator() {
         return creator;
     }
 
-    public LocalDateTime getCreationTime() {
+    public Date getCreationTime() {
         return creationTime;
     }
 

@@ -14,7 +14,7 @@ public interface UserInfoService {
 
     UserInfo getUserInfo(String login);
 
-    UserInfo updateUserName(String userName);
+    UserInfo updateUserName(String login, String userName);
 
     void deleteUserInfo(String login);
 
