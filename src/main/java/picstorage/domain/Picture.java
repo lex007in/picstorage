@@ -1,10 +1,7 @@
 package picstorage.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +14,7 @@ import java.util.List;
 public class Picture {
 
     @Id
+    @GeneratedValue
     private long id;
     private String title;
     private String description;
@@ -30,13 +28,11 @@ public class Picture {
     public Picture() {
     }
 
-    public Picture(long pictureId,
-                   UserInfo creator,
+    public Picture(UserInfo creator,
                    Date creationTime) {
-        this.pictureId = pictureId;
         this.creator = creator;
         this.creationTime = creationTime;
-        this.comments = new ArrayList<Comment>();
+        this.comments = new ArrayList<>();
     }
 
     public long getId() {

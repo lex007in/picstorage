@@ -1,5 +1,6 @@
 package picstorage.services;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import picstorage.domain.UserInfo;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
  * User: ivannik
  * Date: 13.04.2014
  */
-public interface UserInfoService {
+public interface UserInfoService extends UserDetailsService {
 
     List<UserInfo> getAllUsers();
 

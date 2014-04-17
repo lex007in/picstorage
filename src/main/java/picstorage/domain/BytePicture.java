@@ -1,7 +1,6 @@
 package picstorage.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * User: ivannik
@@ -11,8 +10,11 @@ import javax.persistence.Id;
 public class BytePicture {
 
     @Id
+    @GeneratedValue
     private long id;
     private String fileName;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] picture;
 
     public BytePicture() {

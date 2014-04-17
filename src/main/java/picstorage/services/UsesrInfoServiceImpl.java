@@ -1,5 +1,7 @@
 package picstorage.services;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import picstorage.domain.UserInfo;
 import picstorage.repository.UserInfoRepository;
 
@@ -34,7 +36,9 @@ public class UsesrInfoServiceImpl implements UserInfoService {
 
     @Override
     public UserInfo updateUserName(String login, String userName) {
-        return repository.save(new UserInfo(login, userName));
+        UserInfo userInfo = getUserInfo(login);
+        userInfo.setName(userName);
+        return repository.save(userInfo);
     }
 
     @Override
@@ -45,5 +49,10 @@ public class UsesrInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfo createUserInfo(UserInfo userInfo) {
         return repository.save(userInfo);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return getUserInfo(username).toUserDetails();
     }
 }

@@ -1,6 +1,7 @@
 package picstorage.services;
 
 import picstorage.domain.BytePicture;
+import picstorage.domain.Comment;
 import picstorage.domain.Picture;
 import picstorage.repository.BytePictureRepository;
 import picstorage.repository.PictureRepository;
@@ -27,6 +28,11 @@ public class PictureServiceImpl implements PictureService {
         BytePicture savedBytePicture = bytePictureRepository.save(bytePicture);
         picture.setPictureId(savedBytePicture.getId());
         return pictureRepository.save(picture);
+    }
+
+    @Override
+    public Picture getPicture(long id) {
+        return pictureRepository.findOne(id);
     }
 
     @Override
@@ -66,5 +72,12 @@ public class PictureServiceImpl implements PictureService {
     @Override
     public BytePicture getBytePicture(long id) {
         return bytePictureRepository.findOne(pictureRepository.findOne(id).getPictureId());
+    }
+
+    @Override
+    public Picture addComment(long id, Comment comment) {
+        Picture pic = pictureRepository.findOne(id);
+        pic.addComment(comment);
+        return pictureRepository.save(pic);
     }
 }
