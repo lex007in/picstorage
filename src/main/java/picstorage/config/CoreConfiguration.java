@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import picstorage.repository.BytePictureRepository;
 import picstorage.repository.PictureRepository;
 import picstorage.repository.UserInfoRepository;
@@ -13,6 +14,7 @@ import picstorage.services.PictureServiceImpl;
 import picstorage.services.UserInfoService;
 import picstorage.services.UsesrInfoServiceImpl;
 
+import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 
 /**
@@ -44,5 +46,13 @@ public class CoreConfiguration {
         factory.setMaxFileSize("128MB");
         factory.setMaxRequestSize("128MB");
         return factory.createMultipartConfig();
+    }
+
+    @Bean
+    public Filter characterEncodingFilter() {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        return characterEncodingFilter;
     }
 }

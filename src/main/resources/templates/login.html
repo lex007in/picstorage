@@ -2,23 +2,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <script src="/js/jquery.js"></script>
-        <title>Spring Security Example </title>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <title>Picstorage sign in</title>
+        <link href="css/bootstrap.css" rel="stylesheet"/>
+        <link href="css/signin.css" rel="stylesheet"/>
     </head>
     <body>
-        <div th:if="${param.error}">
+    <div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Picstorage</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+    <form th:action="@{/login}" method="post" class="form-signin" role="form">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input name="username" type="text" class="form-control" placeholder="Login" required="true" autofocus="true"/>
+        <input name="password" type="password" class="form-control" placeholder="Password" required="true"/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <div class="alert alert-danger alert-dismissable" th:if="${param.error}">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Invalid username and password.
         </div>
-        <div th:if="${param.logout}">
+        <div class="alert alert-info alert-dismissable" th:if="${param.logout}">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             You have been logged out.
         </div>
-        <form th:action="@{/login}" method="post">
-            <div><label> Login: <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-        <div>Register:</div>
-        <form id="register" onsubmit="$.ajax({
+    </form>
+    <br/>
+    <form id="register" class="form-signin" onsubmit="$.ajax({
                                             url: '/rest/reg',
                                             cache: false,
                                             type: 'POST',
@@ -31,13 +45,15 @@
                                                     name: document.forms.register.elements.name.value
                                                 }),
                                             success: function(json) {
-                                                alert('Registered!');
+                                                alert('You registered! Try login');
                                             }
                                         }); return false">
-            <div><label> User Name: <input type="text" name="name"/> </label></div>
-            <div><label> Login: <input type="text" name="login"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Register"/></div>
-        </form>
+        <h2 class="form-signin-heading">Register:</h2>
+        <input name="login" type="text" class="form-control" placeholder="Login" required="true" autofocus="true"/>
+        <input name="password" type="password" class="form-control" placeholder="Password" required="true"/>
+        <input name="name" type="text" class="form-control" placeholder="You name"/>
+        <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
+    </form>
+    </div>
     </body>
 </html>

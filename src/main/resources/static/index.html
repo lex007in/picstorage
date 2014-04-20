@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="picstorage">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Picstorage</title>
+    
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/demo.css">
 </head>
 <body>
-index
-<a href="/logout">logout</a>
+    <div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Picstorage</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/my">My pictures</a></li>
+                    <li><a href="#/upload">Upload picture</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div ng-view></div>
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-resource.js"></script>
+    <script src="js/picstorage.js"></script>
+    <script src="js/controllers.js"></script>
 </body>
 </html>

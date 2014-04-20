@@ -1,0 +1,5 @@
+<div id="links" class="container pic-list">
+    <a ng-repeat="picture in pictures" href="#/pic/{{picture.id}}" data-gallery>
+        <img ng-src="/rest/pictures/{{picture.id}}/thumb"/>
+    </a>
+</div>

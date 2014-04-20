@@ -16,13 +16,17 @@ public class BytePicture {
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] picture;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] thumbnail;
 
     public BytePicture() {
     }
 
-    public BytePicture(String fileName, byte[] picture) {
+    public BytePicture(String fileName, byte[] picture, byte[] thumbnail) {
         this.fileName = fileName;
         this.picture = picture;
+        this.thumbnail = thumbnail;
     }
 
     public long getId() {
@@ -35,5 +39,9 @@ public class BytePicture {
 
     public byte[] getPicture() {
         return picture;
+    }
+
+    public byte[] getThumbnail() {
+        return thumbnail;
     }
 }

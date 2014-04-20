@@ -22,7 +22,7 @@ public class Picture {
     @OneToOne
     private UserInfo creator;
     private Date creationTime;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     public Picture() {

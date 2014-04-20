@@ -1,6 +1,7 @@
 package picstorage.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,12 @@ public class UserController {
     @ResponseBody
     public List<UserInfo> getAllUsers() {
         return userInfoService.getAllUsers();
+    }
+
+    @RequestMapping(value="/current", method= RequestMethod.GET)
+    @ResponseBody
+    public UserInfo getCurrentUser() {
+        return userInfoService.getUserInfo(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     @RequestMapping(value="/users/{id}", method= RequestMethod.GET)

@@ -1,0 +1,30 @@
+<div class="modal-content panel panel-default">
+    <div class="panel-heading">
+        <button id="delButton" class="btn btn-danger pull-right hide" ng-click="delete()">delete</button>
+        <h2>{{picture.title}}</h2>
+        <small>{{picture.printDate}}</small>
+        <h5>{{picture.description}}</h5>
+    </div>
+    <div class="panel-body">
+        <img class="img-responsive" ng-src="/rest/pictures/{{picture.id}}/pic"/>
+        <br/>
+        <div class="panel panel-default" ng-repeat="comment in picture.comments">
+            <div class="panel-heading">{{comment.creator.name}}<small class="pull-right">{{comment.printDate}}</small></div>
+            <div class="panel-body">{{comment.text}}</div>
+        </div>
+        <br/>
+        <form ng-submit="addComment()">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add new comment:
+                </div>
+                <div class="panel-body">
+                    <textarea id="comtxt" ng-model="comment.text" class="form-control" rows="3" placeholder="description"></textarea>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-lg btn-primary btn-block pull-right">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
