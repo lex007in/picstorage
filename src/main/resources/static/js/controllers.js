@@ -14,22 +14,24 @@ angular.module('picstorage.controllers', [])
               headers: {
                 'Content-Type': undefined
               }
-            }).success(function(user) {
+            }).success(function() {
               alert("File uploaded!");
-          });;
+          });
       };
   })
   .controller('PicturesCtrl', function($scope, $location, $http) {
       $scope.pictures = [];
-      $http.get('/rest/pictures').success(function(data) {
-          if ($location.absUrl().endsWith("/my")) {
-              $http.get('/rest/current').success(function(user) {
-                  $scope.pictures = data.filter(function(a){return a.creator.login === user.login;});
-              });
-          } else {
-            $scope.pictures = data;
-          }
-      });
+        if ($location.absUrl().endsWith("/my")) {
+            $http.get('/rest/current').success(function(user) {
+                $http.get('/rest/pictures/user/' + user.login).success(function(data) {
+                    $scope.pictures = data;
+                });
+            });
+        } else {
+            $http.get('/rest/pictures').success(function(data) {
+                $scope.pictures = data;
+            });
+        }
   })
   .controller('PicDetailCtrl', function($scope, $location,  $routeParams, $http) {
       $scope.picture = {};
@@ -40,7 +42,7 @@ angular.module('picstorage.controllers', [])
           $http.get('/rest/current').success(function(user) {
                   if ($scope.picture.creator.login === user.login) {
                       $('#delButton').removeClass('hide');
-                  };
+                  }
               });
       };
       $http.get('/rest/pictures/' + $routeParams.picId).success(updateData);
@@ -53,9 +55,9 @@ angular.module('picstorage.controllers', [])
                 'Content-Type': undefined
               }
             }).success(updateData);
-      }
-      $scope.delete = function() {
-          $http.delete("/rest/pictures/" + $scope.picture.id).success(function(user) {
+      };
+      $scope.deletePic = function() {
+          $http.delete("/rest/pictures/" + $scope.picture.id).success(function() {
               $location.path("/");
               $scope.$apply();
           });

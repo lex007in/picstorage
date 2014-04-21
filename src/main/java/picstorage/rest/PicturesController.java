@@ -42,6 +42,12 @@ public class PicturesController {
         return pictureService.getAllPictures();
     }
 
+    @RequestMapping(value = "/user/{login}", method= RequestMethod.GET)
+    @ResponseBody
+    public List<Picture> getUserPictures(@PathVariable String login) {
+        return pictureService.getUserPictures(login);
+    }
+
     @RequestMapping(value="/{id}", method= RequestMethod.GET)
     @ResponseBody
     public Picture getPictureInfo(@PathVariable long id) {
