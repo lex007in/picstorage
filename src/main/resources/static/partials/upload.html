@@ -1,9 +1,9 @@
 <div class="container center-block">
-  <form id="picForm" class="form-signin" ng-submit="upload()" accept-charset="UTF-8">
-    <h2 class="form-signin-heading">Upload picture:</h2>
-    <input ng-model="file" type="file" class="form-control" onchange="angular.element(this).scope().file = this" required>
-    <input ng-model="picture.title" type="text" class="form-control" placeholder="title" required>
-    <textarea ng-model="picture.description" class="form-control" rows="3" placeholder="description"></textarea>
+  <form id="picForm" class="form-up" data-ng-submit="upload()" accept-charset="UTF-8">
+    <h2 class="form-up-heading">Upload picture:</h2>
+    <input data-ng-model="file" type="file" class="form-control form-up up" onchange="angular.element(this).scope().file = this" required>
+    <input data-ng-model="picture.title" type="text" class="form-control form-up mid" placeholder="title" required>
+    <textarea data-ng-model="picture.description" class="form-control form-up down" rows="3" placeholder="description"></textarea>
     <button class="btn btn-lg btn-primary btn-block">Upload</button>
   </form>
 </div>

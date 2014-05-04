@@ -19,8 +19,8 @@
     <div class="container">
     <form th:action="@{/login}" method="post" class="form-signin" role="form">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input name="username" type="text" class="form-control" placeholder="Login" required="true" autofocus="true"/>
-        <input name="password" type="password" class="form-control" placeholder="Password" required="true"/>
+        <input name="username" type="text" class="form-control up" placeholder="Login" required="true" autofocus="true"/>
+        <input name="password" type="password" class="form-control down" placeholder="Password" required="true"/>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <div class="alert alert-danger alert-dismissable" th:if="${param.error}">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -49,9 +49,9 @@
                                             }
                                         }); return false">
         <h2 class="form-signin-heading">Register:</h2>
-        <input name="login" type="text" class="form-control" placeholder="Login" required="true" autofocus="true"/>
-        <input name="password" type="password" class="form-control" placeholder="Password" required="true"/>
-        <input name="name" type="text" class="form-control" placeholder="You name"/>
+        <input name="login" type="text" class="form-control up" placeholder="Login" required="true" autofocus="true"/>
+        <input name="password" type="password" class="form-control mid" placeholder="Password" required="true"/>
+        <input name="name" type="text" class="form-control down" placeholder="You name"/>
         <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
     </form>
     </div>

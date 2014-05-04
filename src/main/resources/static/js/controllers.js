@@ -35,10 +35,16 @@ angular.module('picstorage.controllers', [])
   })
   .controller('PicDetailCtrl', function($scope, $location,  $routeParams, $http) {
       $scope.picture = {};
+
+      var datePrint = function(mils) {
+          var d = new Date(mils);
+          return d.getDate() + "." + d.getMonth() + "." + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes();
+      };
+
       var updateData = function(data) {
           $scope.picture = data;
-          $scope.picture.printDate = new Date(data.creationTime).toString();
-          $scope.picture.comments.map(function(comment) { comment.printDate = new Date(data.creationTime).toString();});
+          $scope.picture.printDate = datePrint(data.creationTime);
+          $scope.picture.comments.map(function(comment) { comment.printDate = datePrint(data.creationTime);});
           $http.get('/rest/current').success(function(user) {
                   if ($scope.picture.creator.login === user.login) {
                       $('#delButton').removeClass('hide');
